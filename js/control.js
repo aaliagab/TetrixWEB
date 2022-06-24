@@ -46,7 +46,9 @@ function addAllTr(){
 }
 addAllTr();
 
-
+function valorRandom(){
+    return Math.random()*7 | 0;
+}
 
 
 import * as figuras from "./figuras.js";
@@ -54,7 +56,20 @@ let figs = new Array(10000);
 function crearFiguras(){
     let i = 0;
     while(i<figs.length){
-        figs[i] = figuras.crearSInvertida();
+        if(valorRandom()==0)
+            figs[i] = figuras.crearSInvertida();
+        else if(valorRandom()==1)
+            figs[i] = figuras.crearS();
+        else if(valorRandom()==2)
+            figs[i] = figuras.crearL();
+        else if(valorRandom()==3)
+            figs[i] = figuras.crearLInvertida();
+        else if(valorRandom()==4)
+            figs[i] = figuras.crearLinea();
+        else if(valorRandom()==5)
+            figs[i] = figuras.crearT();
+        else
+            figs[i] = figuras.crearCuadrado();
         i++;
     }
 }
@@ -64,6 +79,6 @@ crearFiguras();
 
 
 
-document.getElementById('img-'+5+'-'+5).className = figs[0][1][1].className;
+document.getElementById('img-'+5+'-'+5).className = figs[0][1][0].className;
 //document.getElementById('img-'+5+'-'+5).className = 'crojo';
 console.log('Figura '+figs[5]);
