@@ -25,14 +25,14 @@ function addTr(){
     tr.id = 'tr-'+trcount;    
     while(tdcount <12){
         let td = document.createElement('td');
-        td.id = 'td-'+trcount+'-'+tdcount;
-        tdcount++;        
+        td.id = 'td-'+trcount+'-'+tdcount;               
         let img = document.createElement('img');
+        img.id = 'img-'+trcount+'-'+tdcount;
         img.className = 'cnone';
         td.appendChild(img);
         tr.appendChild(td);
         //console.log(img.className+' '+td.id);
-        
+        tdcount++;         
     }    
     tdcount = 0;
     trcount++;
@@ -45,3 +45,25 @@ function addAllTr(){
     }
 }
 addAllTr();
+
+
+
+
+import * as figuras from "./figuras.js";
+let figs = new Array(10000);
+function crearFiguras(){
+    let i = 0;
+    while(i<figs.length){
+        figs[i] = figuras.crearSInvertida();
+        i++;
+    }
+}
+
+crearFiguras();
+
+
+
+
+document.getElementById('img-'+5+'-'+5).className = figs[0][1][1].className;
+//document.getElementById('img-'+5+'-'+5).className = 'crojo';
+console.log('Figura '+figs[5]);
