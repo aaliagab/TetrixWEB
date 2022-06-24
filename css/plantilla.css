@@ -3,8 +3,9 @@ body {
 }
 #marco{
     color: white;
-    width: 500px;
-    height: 580px;
+    width: 530px;
+    height: 680px;
+    border-collapse: collapse;
 }
 #footer{
     color:aqua;
@@ -15,4 +16,62 @@ body {
 }
 .center{
     text-align: center;
+    align-content: center;
+    align-items: center;
+    align-self: center;
+}
+
+.cnone{
+    width: 40px;
+    height: 40px;
+}
+
+.crojo{
+    width: 40px;
+    height: 40px;
+    background-image: url('../images/cuadros40px/rojo.png');
+}
+
+.cverde{
+    width: 40px;
+    height: 40px;
+    background-image: url('../images/cuadros40px/verde.png');
+}
+
+.cagua{
+    width: 40px;
+    height: 40px;
+    background-image: url('../images/cuadros40px/agua.png');
+}
+
+.camarillo{
+    width: 40px;
+    height: 40px;
+    background-image: url('../images/cuadros40px/amarillo.png');
+}
+
+.cazul{
+    width: 40px;
+    height: 40px;
+    background-image: url('../images/cuadros40px/azul.png');
+}
+
+.cmorado{
+    width: 40px;
+    height: 40px;
+    background-image: url('../images/cuadros40px/morado.png');
+}
+
+.cnaranja{
+    width: 40px;
+    height: 40px;
+    background-image: url('../images/cuadros40px/naranja.png');
+}
+
+#table{
+    border-collapse: collapse;
+}
+
+table, tr, td{
+    border:none;
 }

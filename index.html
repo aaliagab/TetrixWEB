@@ -7,24 +7,170 @@
         <title>TETRIX WEB ADRIEL</title>
         <link rel="stylesheet" href="css/plantilla.css">
         <link rel="stylesheet" href="css/bootstrap.min.css">
+        <!--link rel="import" href="menu.html"-->        
+        <script src="js/control.js"></script>
     </head>
     
     <body>
         <div id="cabeza">
-
+            
         </div>
         <div id="principal" class="container">
             <div class="row">
                 <div id="figura_prox" class="col">
                     <p class="blanco center"><b>Próxima Figura</b></p>
                     <p class="center"><img src="images/pequenas40px/cuadrado.png" alt=""></p>
+                    <br/>
+                    <br/>
+                    
+                    <p class="blanco">Utiliza las flechas left, right y down para mover la figura, tecla up para girarla.</p>
+                    <table class="table">
+                        <thead>
+                          <tr class="blanco">
+                            <th scope="col">#</th>
+                            <th scope="col">Nick</th>
+                            <th scope="col">Puntos</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr class="blanco">
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>1800</td>
+                          </tr>
+                          <tr class="blanco">
+                            <th scope="row">2</th>
+                            <td>Jacob</td>
+                            <td>1665</td>
+                          </tr>
+                          <tr class="blanco">
+                            <th scope="row">3</th>
+                            <td>Jacob</td>
+                            <td>1665</td>
+                          </tr>
+                          <tr class="blanco">
+                            <th scope="row">4</th>
+                            <td>Jacob</td>
+                            <td>1665</td>
+                          </tr>
+                          <tr class="blanco">
+                            <th scope="row">5</th>
+                            <td>Jacob</td>
+                            <td>1665</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <div class="center">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                              <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Previous">
+                                  <span aria-hidden="true">&laquo;</span>
+                                </a>
+                              </li>
+                              <li class="page-item"><a class="page-link" href="#">1</a></li>
+                              <li class="page-item"><a class="page-link" href="#">2</a></li>
+                              <li class="page-item"><a class="page-link" href="#">3</a></li>
+                              <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Next">
+                                  <span aria-hidden="true">&raquo;</span>
+                                </a>
+                              </li>
+                            </ul>
+                          </nav>
+                      </div>
                 </div>
                 <div id="marco" class="border">
-                    <p class="center"><img src="images/pequenas40px/Sinvertida.png" alt=""></p>
+                    <!--p class="center"><img id="figura" src="images/pequenas40px/Sinvertida.png" alt=""></p-->
+                    <table id="table">
+                        <tbody>
+                            <tr>
+                                <td><img class="cverde"></td>
+                                <td><img class="crojo"></td>
+                                <td><img class="camarillo"></td>
+                                <td><img class="cagua"></td>
+                                <td><img class="cnaranja"></td>
+                                <td><img class="cmorado"></td>
+                                <td><img class="cazul"></td>
+                                <td><img class="crojo"></td>
+                                <td><img class="crojo"></td>
+                                <td><img class="crojo"></td>
+                                <td><img class="crojo"></td>
+                                <td><img class="crojo"></td>
+                            </tr>
+                            <tr>
+                                <td><img class="cverde"></td>
+                                <td><img class="crojo"></td>
+                                <td><img class="camarillo"></td>
+                                <td><img class="cagua"></td>
+                                <td><img class="cnaranja"></td>
+                                <td><img class="cmorado"></td>
+                                <td><img class="cazul"></td>
+                                <td><img class="crojo"></td>
+                                <td><img class="crojo"></td>
+                                <td><img class="crojo"></td>
+                                <td><img class="crojo"></td>
+                                <td><img class="crojo"></td>
+                            </tr>
+                            <tr>
+                                <td><img class="cverde"></td>
+                                <td><img class="crojo"></td>
+                                <td><img class="camarillo"></td>
+                                <td><img class="cagua"></td>
+                                <td><img class="cnaranja"></td>
+                                <td><img class="cmorado"></td>
+                                <td><img class="cazul"></td>
+                                <td><img class="crojo"></td>
+                                <td><img class="crojo"></td>
+                                <td><img class="crojo"></td>
+                                <td><img class="crojo"></td>
+                                <td><img class="crojo"></td>
+                            </tr>
+                            <tr>
+                                <td><img class="cverde"></td>
+                                <td><img class="crojo"></td>
+                                <td><img class="camarillo"></td>
+                                <td><img class="cagua"></td>
+                                <td><img class="cnaranja"></td>
+                                <td><img class="cmorado"></td>
+                                <td><img class="cazul"></td>
+                                <td><img class="crojo"></td>
+                                <td><img class="crojo"></td>
+                                <td><img class="crojo"></td>
+                                <td><img class="crojo"></td>
+                                <td><img class="crojo"></td>
+                            </tr>
+                          </tbody>
+                    </table>
                 </div>                
                 <div id="score" class="col">
                     <p class="blanco center"><b>RECORD</b></p>
                     <p class="blanco center"><b>1500</b></p>
+                    <br/>
+                    <br/>
+                    <p class="blanco center"><b>SELECCIONA TU FONDO MUSICAL</b></p>
+                    <audio controls autoplay loop>
+                        <source src="song/1.mp3" type="audio/mp3">
+                            Tu navegador no soporta audio HTML5.
+                    </audio>
+                    <br/>
+                    <br/>
+                    <audio controls autoplay loop>
+                        <source src="song/2.mp3" type="audio/mp3">
+                            Tu navegador no soporta audio HTML5.
+                    </audio>
+                    <br/>
+                    <br/>
+                    <audio controls autoplay loop>
+                        <source src="song/3.mp3" type="audio/mp3">
+                            Tu navegador no soporta audio HTML5.
+                    </audio>
+                    <br/>
+                    <br/>
+                    <audio controls autoplay loop>
+                        <source src="song/4.mp3" type="audio/mp3">
+                            Tu navegador no soporta audio HTML5.
+                    </audio>
                 </div>
             </div>
         </div>
