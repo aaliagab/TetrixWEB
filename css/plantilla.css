@@ -4,7 +4,7 @@ body {
 #marco{
     color: white;
     width: 530px;
-    height: 680px;
+    height: 675px;
     border-collapse: collapse;
 }
 #footer{
@@ -24,6 +24,7 @@ body {
 .cnone{
     width: 40px;
     height: 40px;
+    border-collapse: collapse;
 }
 
 .crojo{

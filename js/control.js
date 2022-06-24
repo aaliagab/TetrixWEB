@@ -15,44 +15,33 @@ document.onkeydown = function(e) {
     }
     //alert(e.key+e.keyCode); // shows k75
 };
-var obj = document.getElementById("figura");
-    obj.left = 0;
-    obj.top = 0;
-    var top2, left2, right, bot;
-    var up, lef, righ, bont;
-    function c() {
-        up = top2;
-        lef = left2;
-        righ = right;
-        bont = bot;
-        f();
+
+
+let tbody = document.getElementById('bodytable');
+let trcount = 0;
+function addTr(){    
+    let tdcount = 0;
+    let tr = document.createElement('tr');
+    tr.id = 'tr-'+trcount;    
+    while(tdcount <12){
+        let td = document.createElement('td');
+        td.id = 'td-'+trcount+'-'+tdcount;
+        tdcount++;        
+        let img = document.createElement('img');
+        img.className = 'cnone';
+        td.appendChild(img);
+        tr.appendChild(td);
+        //console.log(img.className+' '+td.id);
+        
+    }    
+    tdcount = 0;
+    trcount++;
+    tbody.appendChild(tr);
+}
+
+function addAllTr(){
+    while(trcount<16){                
+        addTr();
     }
-    function f1(event) {
-        top2 = event.keyCode;
-    }
-    function f2(event) {
-        bot = event.keyCode;
-    }
-    function f3(event) {
-        left2 = event.keyCode;
-    }
-    function f4(event) {
-        right = event.keyCode;
-    }
-    function f() {
-        console.log(event.keyCode);
-        if (event.keyCode == lef) {
-            obj.left -= 40;
-        }
-        if (event.keyCode == up) {
-            obj.top -= 40;
-        }
-        if (event.keyCode == righ) {
-            obj.left += 40;
-        }
-        if (event.keyCode == bont) {
-            obj.top += 40;
-        }
-        obj.style.left = obj.left + 'px', obj.style.top = obj.top + 'px';
-    }
-    document.onkeydown = f;
+}
+addAllTr();
