@@ -1,0 +1,18 @@
+body {
+    background-image: url("../images/fondo.jpg");
+}
+#marco{
+    color: white;
+    width: 500px;
+    height: 580px;
+}
+#footer{
+    color:aqua;
+    text-align: center;
+}
+.blanco{
+    color: white;
+}
+.center{
+    text-align: center;
+}
