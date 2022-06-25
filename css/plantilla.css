@@ -7,6 +7,16 @@ body {
     height: 675px;
     border-collapse: collapse;
 }
+#recordtext{
+    text-align: center;
+    color: white;
+}
+
+#recordnum{
+    text-align: center;
+    color: aqua;
+}
+
 #footer{
     color:aqua;
     text-align: center;

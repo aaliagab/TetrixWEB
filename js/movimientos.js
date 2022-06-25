@@ -1,6 +1,7 @@
 let fila_inicial = 0;
 let columna_inicial = 4;
 let rotacion = 0;//puede ser 0,1,2,3
+let record = 0;
 
 import * as control from "./control.js";
 
@@ -62,29 +63,19 @@ function borrarFilas(){
         fila++;
     }    
     fin = fila-1;
-    //let destino = inicio;//15
-    /*for(let i = 2*inicio-fin-1;i<inicio;i++){//i=14-15
-        if(i<0)
-            limpiarFila(destino);
-        else{
-            copiarFila(i,destino++);            
-        }
-    }*/
-    //inicio 14 fin 15 eliminar 2
+    
     let i = inicio-1;
-    console.log('i ' + i);
-    console.log('inicio ' + inicio);
-    console.log('fin ' + fin);
-    while(fin>=0 && inicio>=0){
-        console.log('while');
+    if(inicio>=0){
+        record += (12*Math.pow(2,fin-inicio+1)); 
+        document.getElementById('recordnum').textContent = parseInt(record); 
+    }
+    while(fin>=0 && inicio>=0){  
         if(i<0){
-            console.log('limpiar');
             limpiarFila(fin--);
             i--;
         }
         else{
-            console.log('copiar de ' + i + ' '+fin);
-            copiarFila(i--,fin--);            
+            copiarFila(i--,fin--);                       
         }
     }
     
@@ -94,6 +85,7 @@ function isVacio(fila,columna){
     return document.getElementById('img-'+fila+'-'+columna).className=='cnone';
 }
 
+//MOVIMIENTOS LINEA
 function moveDownLinea(){
     if(rotacion == 0){
         if(fila_inicial<12 &&
@@ -139,6 +131,73 @@ function moveDownLinea(){
     }
 }
 
+function moveLeftLinea(){
+    if(rotacion == 0){
+        if(columna_inicial>0 &&
+            document.getElementById('img-'+(fila_inicial)+'-'+(columna_inicial-1)).className=='cnone' &&
+            document.getElementById('img-'+(fila_inicial+1)+'-'+(columna_inicial-1)).className=='cnone' &&
+            document.getElementById('img-'+(fila_inicial+2)+'-'+(columna_inicial-1)).className=='cnone' &&
+            document.getElementById('img-'+(fila_inicial+3)+'-'+(columna_inicial-1)).className=='cnone'){
+                document.getElementById('img-'+(fila_inicial)+'-'+(columna_inicial)).className='cnone';
+                document.getElementById('img-'+(fila_inicial+1)+'-'+(columna_inicial)).className='cnone';
+                document.getElementById('img-'+(fila_inicial+2)+'-'+(columna_inicial)).className='cnone';
+                document.getElementById('img-'+(fila_inicial+3)+'-'+(columna_inicial)).className='cnone';
+                document.getElementById('img-'+(fila_inicial)+'-'+(columna_inicial-1)).className='cagua';
+                document.getElementById('img-'+(fila_inicial+1)+'-'+(columna_inicial-1)).className='cagua';
+                document.getElementById('img-'+(fila_inicial+2)+'-'+(columna_inicial-1)).className='cagua';
+                document.getElementById('img-'+(fila_inicial+3)+'-'+(columna_inicial-1)).className='cagua';
+                columna_inicial--;
+                if(fila_inicial==12 && columna_inicial==0){
+                    iniciarNuevaFigura();
+                }
+            }
+    }else if(rotacion == 1){
+        if(columna_inicial>0 &&
+            document.getElementById('img-'+(fila_inicial)+'-'+(columna_inicial-1)).className=='cnone'){
+                document.getElementById('img-'+(fila_inicial)+'-'+(columna_inicial+3)).className='cnone';
+                document.getElementById('img-'+(fila_inicial)+'-'+(columna_inicial-1)).className='cagua';
+                columna_inicial--;
+                if(fila_inicial==15 && columna_inicial==0){
+                    iniciarNuevaFigura();
+                }
+            }
+    }
+}
+
+function moveRightLinea(){
+    if(rotacion == 0){
+        if(columna_inicial<11 &&
+            document.getElementById('img-'+(fila_inicial)+'-'+(columna_inicial+1)).className=='cnone' &&
+            document.getElementById('img-'+(fila_inicial+1)+'-'+(columna_inicial+1)).className=='cnone' &&
+            document.getElementById('img-'+(fila_inicial+2)+'-'+(columna_inicial+1)).className=='cnone' &&
+            document.getElementById('img-'+(fila_inicial+3)+'-'+(columna_inicial+1)).className=='cnone'){
+                document.getElementById('img-'+(fila_inicial)+'-'+(columna_inicial)).className='cnone';
+                document.getElementById('img-'+(fila_inicial+1)+'-'+(columna_inicial)).className='cnone';
+                document.getElementById('img-'+(fila_inicial+2)+'-'+(columna_inicial)).className='cnone';
+                document.getElementById('img-'+(fila_inicial+3)+'-'+(columna_inicial)).className='cnone';
+                document.getElementById('img-'+(fila_inicial)+'-'+(columna_inicial+1)).className='cagua';
+                document.getElementById('img-'+(fila_inicial+1)+'-'+(columna_inicial+1)).className='cagua';
+                document.getElementById('img-'+(fila_inicial+2)+'-'+(columna_inicial+1)).className='cagua';
+                document.getElementById('img-'+(fila_inicial+3)+'-'+(columna_inicial+1)).className='cagua';
+                columna_inicial++;
+                if(fila_inicial==12 && columna_inicial==11){
+                    iniciarNuevaFigura();
+                }
+            }
+    }else if(rotacion == 1){
+        if(columna_inicial<8 &&
+            document.getElementById('img-'+(fila_inicial)+'-'+(columna_inicial+4)).className=='cnone'){
+                document.getElementById('img-'+(fila_inicial)+'-'+(columna_inicial)).className='cnone';
+                document.getElementById('img-'+(fila_inicial)+'-'+(columna_inicial+4)).className='cagua';
+                columna_inicial++;
+                if(fila_inicial==15 && columna_inicial==8){
+                    iniciarNuevaFigura();
+                }
+            }
+    }
+}
+
+//MOVIMIENTOS CUADRADO
 function moveDownCuadrado(){
     if(fila_inicial<14 &&
         document.getElementById('img-'+(fila_inicial+2)+'-'+columna_inicial).className=='cnone' &&
@@ -242,7 +301,7 @@ export function moveDown(figura_actual){
 
 export function moveLeft(figura_actual){
     if(figura_actual == 'linea'){
-        
+        moveLeftLinea();
     }else if(figura_actual == 'T'){
         if(rotacion == 0){
 
@@ -292,7 +351,7 @@ export function moveLeft(figura_actual){
 
 export function moveRight(figura_actual){
     if(figura_actual == 'linea'){
-        
+        moveRightLinea();
     }else if(figura_actual == 'T'){
         if(rotacion == 0){
 
