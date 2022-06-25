@@ -76,9 +76,77 @@ function crearFiguras(){
 
 crearFiguras();
 
+let position = 0;
+
+function colocarFiguraProxima(){
+    if(figs[position+1][1][0].className == 'cagua'){
+        document.getElementById('imgProx').src = '../images/pequenas40px/linea.png';
+    }else if(figs[position+1][1][0].className == 'camarillo'){
+        document.getElementById('imgProx').src = '../images/pequenas40px/T.png';
+    }else if(figs[position+1][1][0].className == 'cazul'){
+        document.getElementById('imgProx').src = '../images/pequenas40px/Linvertida.png';
+    }else if(figs[position+1][1][0].className == 'cverde'){
+        document.getElementById('imgProx').src = '../images/pequenas40px/L.png';
+    }else if(figs[position+1][1][0].className == 'cmorado'){
+        document.getElementById('imgProx').src = '../images/pequenas40px/S.png';
+    }else if(figs[position+1][1][0].className == 'cnaranja'){
+        document.getElementById('imgProx').src = '../images/pequenas40px/Sinvertida.png';
+    }else{
+        document.getElementById('imgProx').src = '../images/pequenas40px/cuadrado.png';
+    }
+}
 
 
 
-document.getElementById('img-'+5+'-'+5).className = figs[0][1][0].className;
+function colocarFiguras(){
+    if(figs[position][1][0].className == 'cagua'){
+        //dibuja linea color agua
+        document.getElementById('img-'+0+'-'+4).className = figs[position][1][0].className;
+        document.getElementById('img-'+1+'-'+4).className = figs[position][1][0].className;
+        document.getElementById('img-'+2+'-'+4).className = figs[position][1][0].className;
+        document.getElementById('img-'+3+'-'+4).className = figs[position][1][0].className;
+    }else if(figs[position][1][0].className == 'camarillo'){
+        //dibuja T color amarillo
+        document.getElementById('img-'+0+'-'+5).className = figs[position][1][0].className;
+        document.getElementById('img-'+1+'-'+4).className = figs[position][1][0].className;
+        document.getElementById('img-'+1+'-'+5).className = figs[position][1][0].className;
+        document.getElementById('img-'+2+'-'+5).className = figs[position][1][0].className;
+    }else if(figs[position][1][0].className == 'cazul'){
+        //dibuja Linvertida color azul
+        document.getElementById('img-'+0+'-'+4).className = figs[position][1][0].className;
+        document.getElementById('img-'+1+'-'+4).className = figs[position][1][0].className;
+        document.getElementById('img-'+1+'-'+5).className = figs[position][1][0].className;
+        document.getElementById('img-'+1+'-'+6).className = figs[position][1][0].className;
+    }else if(figs[position][1][0].className == 'cverde'){
+        //dibuja L color verde
+        document.getElementById('img-'+0+'-'+6).className = figs[position][1][0].className;
+        document.getElementById('img-'+1+'-'+4).className = figs[position][1][0].className;
+        document.getElementById('img-'+1+'-'+5).className = figs[position][1][0].className;
+        document.getElementById('img-'+1+'-'+6).className = figs[position][1][0].className;
+    }else if(figs[position][1][0].className == 'cmorado'){
+        //dibuja S color morado
+        document.getElementById('img-'+0+'-'+5).className = figs[position][1][0].className;
+        document.getElementById('img-'+0+'-'+6).className = figs[position][1][0].className;
+        document.getElementById('img-'+1+'-'+4).className = figs[position][1][0].className;
+        document.getElementById('img-'+1+'-'+5).className = figs[position][1][0].className;
+    }else if(figs[position][1][0].className == 'cnaranja'){
+        //dibuja Sinvertida color naranja
+        document.getElementById('img-'+0+'-'+5).className = figs[position][1][0].className;
+        document.getElementById('img-'+1+'-'+4).className = figs[position][1][0].className;
+        document.getElementById('img-'+1+'-'+5).className = figs[position][1][0].className;
+        document.getElementById('img-'+2+'-'+4).className = figs[position][1][0].className;
+    }else{
+        //dibuja cuadrado color rojo
+        document.getElementById('img-'+0+'-'+4).className = figs[position][1][0].className;
+        document.getElementById('img-'+0+'-'+5).className = figs[position][1][0].className;
+        document.getElementById('img-'+1+'-'+4).className = figs[position][1][0].className;
+        document.getElementById('img-'+1+'-'+5).className = figs[position][1][0].className;
+    }
+    colocarFiguraProxima();
+}
+
+colocarFiguras();
+
+//document.getElementById('img-'+5+'-'+5).className = figs[0][1][0].className;
 //document.getElementById('img-'+5+'-'+5).className = 'crojo';
-console.log('Figura '+figs[5]);
+//console.log('Figura '+figs[5]);
