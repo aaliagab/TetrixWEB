@@ -1,3 +1,4 @@
+
 export function crearCuadrado(){
     let componente = document.createElement('img');
     componente.className = 'crojo';

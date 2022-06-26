@@ -5,548 +5,166 @@ let record = 0;
 
 import * as control from "./control.js";
 
-export function caidaConstante(){    
-    while(!control.pausa){
-        let myVar = setTimeout(moveDown(control.figura_actual),control.timedown);
+export function caidaConstante() {
+    while (!control.pausa) {
+        let myVar = setTimeout(moveDown(control.figura_actual), control.timedown);
         clearTimeout(myVar);
     }
 }
 
 //caidaConstante();
 
-function iniciarNuevaFigura(){
+export function iniciarNuevaFigura() {
     fila_inicial = 0;
     columna_inicial = 4;
-    rotacion = 0;    
+    rotacion = 0;
     borrarFilas();
-    control.colocarFiguras();    
+    control.colocarFiguras();
 }
 
-function isFilaCompleta(fila){
+function isFilaCompleta(fila) {
     let columna = 0;
-    while(columna<12){
+    while (columna < 12) {
         //console.log(fila+" - "+columna);
-        if(document.getElementById('img-'+(fila)+'-'+columna).className=='cnone')
+        if (document.getElementById('img-' + (fila) + '-' + columna).className == 'cnone')
             return false;
         columna++;
     }
     return true;
 }
 
-function copiarFila(origen,destino){
-    for(let i = 0; i<12;i++){
-        if(origen<16 && destino<16)
-        document.getElementById('img-'+(destino)+'-'+i).className=
-        document.getElementById('img-'+(origen)+'-'+i).className;
+function copiarFila(origen, destino) {
+    for (let i = 0; i < 12; i++) {
+        if (origen < 16 && destino < 16)
+            document.getElementById('img-' + (destino) + '-' + i).className =
+                document.getElementById('img-' + (origen) + '-' + i).className;
     }
 }
 
-function limpiarFila(fila){
-    for(let i = 0; i<12;i++){
-        document.getElementById('img-'+(fila)+'-'+i).className ='cnone';
+function limpiarFila(fila) {
+    for (let i = 0; i < 12; i++) {
+        document.getElementById('img-' + (fila) + '-' + i).className = 'cnone';
     }
 }
 
-function borrarFilas(){
+function borrarFilas() {
     let inicio = -1;
     let fin = -1;
     let fila = 0;
-    while(fila<16 && !isFilaCompleta(fila)){
+    while (fila < 16 && !isFilaCompleta(fila)) {
         fila++;
     }
-    if(fila>0 && fila<16){
+    if (fila > 0 && fila < 16) {
         inicio = fila;
         fin = fila;
     }
     fila++;
-    while(fila<16 && isFilaCompleta(fila)){
+    while (fila < 16 && isFilaCompleta(fila)) {
         fila++;
-    }    
-    fin = fila-1;
-    
-    let i = inicio-1;
-    if(inicio>=0){
-        record += (12*Math.pow(2,fin-inicio+1)); 
-        document.getElementById('recordnum').textContent = parseInt(record); 
     }
-    while(fin>=0 && inicio>=0){  
-        if(i<0){
+    fin = fila - 1;
+
+    let i = inicio - 1;
+    if (inicio >= 0) {
+        record += (12 * Math.pow(2, fin - inicio + 1));
+        document.getElementById('recordnum').textContent = parseInt(record);
+    }
+    while (fin >= 0 && inicio >= 0) {
+        if (i < 0) {
             limpiarFila(fin--);
             i--;
         }
-        else{
-            copiarFila(i--,fin--);                       
+        else {
+            copiarFila(i--, fin--);
         }
     }
-    
+
 }
 
-function isVacio(fila,columna){
-    return document.getElementById('img-'+fila+'-'+columna).className=='cnone';
+function isVacio(fila, columna) {
+    return document.getElementById('img-' + fila + '-' + columna).className == 'cnone';
 }
 
-//MOVIMIENTOS LINEA
-function moveDownLinea(){
-    if(rotacion == 0){
-        if(fila_inicial<12 &&
-            document.getElementById('img-'+(fila_inicial+4)+'-'+columna_inicial).className=='cnone'){
-                document.getElementById('img-'+(fila_inicial)+'-'+columna_inicial).className='cnone';
-                document.getElementById('img-'+(fila_inicial+1)+'-'+columna_inicial).className='cagua';
-                document.getElementById('img-'+(fila_inicial+2)+'-'+columna_inicial).className='cagua';
-                document.getElementById('img-'+(fila_inicial+3)+'-'+columna_inicial).className='cagua';
-                document.getElementById('img-'+(fila_inicial+4)+'-'+columna_inicial).className='cagua';
-                fila_inicial++;
-                if(fila_inicial==12){
-                    iniciarNuevaFigura();
-                }
-            }
-        else if(document.getElementById('img-'+(fila_inicial+4)+'-'+columna_inicial).className!='cnone'){                    
-            iniciarNuevaFigura();                    
-            }
-    }else if(rotacion == 1){
-        if(fila_inicial<15 &&
-            document.getElementById('img-'+(fila_inicial+1)+'-'+columna_inicial).className=='cnone' &&
-            document.getElementById('img-'+(fila_inicial+1)+'-'+(columna_inicial+1)).className=='cnone' &&
-            document.getElementById('img-'+(fila_inicial+1)+'-'+(columna_inicial+2)).className=='cnone' &&
-            document.getElementById('img-'+(fila_inicial+1)+'-'+(columna_inicial+3)).className=='cnone'){
-                document.getElementById('img-'+(fila_inicial)+'-'+columna_inicial).className='cnone';
-                document.getElementById('img-'+(fila_inicial)+'-'+(columna_inicial+1)).className='cnone';
-                document.getElementById('img-'+(fila_inicial)+'-'+(columna_inicial+2)).className='cnone';
-                document.getElementById('img-'+(fila_inicial)+'-'+(columna_inicial+3)).className='cnone';
-                document.getElementById('img-'+(fila_inicial+1)+'-'+(columna_inicial)).className='cagua';
-                document.getElementById('img-'+(fila_inicial+1)+'-'+(columna_inicial+1)).className='cagua';
-                document.getElementById('img-'+(fila_inicial+1)+'-'+(columna_inicial+2)).className='cagua';
-                document.getElementById('img-'+(fila_inicial+1)+'-'+(columna_inicial+3)).className='cagua';
-                fila_inicial++;
-                if(fila_inicial==15){
-                    iniciarNuevaFigura();
-                }
-            }
-        else if(document.getElementById('img-'+(fila_inicial+1)+'-'+columna_inicial).className!='cnone' ||
-            document.getElementById('img-'+(fila_inicial+1)+'-'+(columna_inicial+1)).className!='cnone' ||
-            document.getElementById('img-'+(fila_inicial+1)+'-'+(columna_inicial+2)).className!='cnone' ||
-            document.getElementById('img-'+(fila_inicial+1)+'-'+(columna_inicial+3)).className!='cnone'){                    
-                iniciarNuevaFigura();                    
-            }
+import * as cuadrado from "./movimientos_cuadrado.js";
+import * as linea from "./movimientos_linea.js";
+import * as s from "./movimientos_s.js";
+import * as sinvertida from "./movimientos_sinvertida.js";
+import * as t from "./movimientos_t.js";
+import * as l from "./movimientos_l.js";
+import * as linvertida from "./movimientos_linvertida.js";
+
+
+
+
+export function moveDown(figura_actual) {
+    if (figura_actual == 'linea') {
+        linea.moveDown();
+    } else if (figura_actual == 'T') {
+        t.moveDown();
+    } else if (figura_actual == 'Linvertida') {
+        linvertida.moveDown();
+    } else if (figura_actual == 'L') {
+        l.moveDown();
+    } else if (figura_actual == 'S') {
+        s.moveDown();
+    } else if (figura_actual == 'Sinvertida') {
+        sinvertida.moveDown();
+    } else {//figura_actual == 'cuadrado'
+        cuadrado.moveDown();
     }
 }
 
-function moveLeftLinea(){
-    if(rotacion == 0){
-        if(columna_inicial>0 &&
-            document.getElementById('img-'+(fila_inicial)+'-'+(columna_inicial-1)).className=='cnone' &&
-            document.getElementById('img-'+(fila_inicial+1)+'-'+(columna_inicial-1)).className=='cnone' &&
-            document.getElementById('img-'+(fila_inicial+2)+'-'+(columna_inicial-1)).className=='cnone' &&
-            document.getElementById('img-'+(fila_inicial+3)+'-'+(columna_inicial-1)).className=='cnone'){
-                document.getElementById('img-'+(fila_inicial)+'-'+(columna_inicial)).className='cnone';
-                document.getElementById('img-'+(fila_inicial+1)+'-'+(columna_inicial)).className='cnone';
-                document.getElementById('img-'+(fila_inicial+2)+'-'+(columna_inicial)).className='cnone';
-                document.getElementById('img-'+(fila_inicial+3)+'-'+(columna_inicial)).className='cnone';
-                document.getElementById('img-'+(fila_inicial)+'-'+(columna_inicial-1)).className='cagua';
-                document.getElementById('img-'+(fila_inicial+1)+'-'+(columna_inicial-1)).className='cagua';
-                document.getElementById('img-'+(fila_inicial+2)+'-'+(columna_inicial-1)).className='cagua';
-                document.getElementById('img-'+(fila_inicial+3)+'-'+(columna_inicial-1)).className='cagua';
-                columna_inicial--;
-                if(fila_inicial==12 && columna_inicial==0){
-                    iniciarNuevaFigura();
-                }
-            }
-    }else if(rotacion == 1){
-        if(columna_inicial>0 &&
-            document.getElementById('img-'+(fila_inicial)+'-'+(columna_inicial-1)).className=='cnone'){
-                document.getElementById('img-'+(fila_inicial)+'-'+(columna_inicial+3)).className='cnone';
-                document.getElementById('img-'+(fila_inicial)+'-'+(columna_inicial-1)).className='cagua';
-                columna_inicial--;
-                if(fila_inicial==15 && columna_inicial==0){
-                    iniciarNuevaFigura();
-                }
-            }
+export function moveLeft(figura_actual) {
+    if (figura_actual == 'linea') {
+        linea.moveLeft();
+    } else if (figura_actual == 'T') {
+        t.moveLeft();
+    } else if (figura_actual == 'Linvertida') {
+        linvertida.moveLeft();
+    } else if (figura_actual == 'L') {
+        l.moveLeft();
+    } else if (figura_actual == 'S') {
+        s.moveLeft();
+    } else if (figura_actual == 'Sinvertida') {
+        sinvertida.moveLeft();
+    } else {//figura_actual == 'cuadrado'
+        cuadrado.moveLeft();
     }
 }
 
-function moveRightLinea(){
-    if(rotacion == 0){
-        if(columna_inicial<11 &&
-            document.getElementById('img-'+(fila_inicial)+'-'+(columna_inicial+1)).className=='cnone' &&
-            document.getElementById('img-'+(fila_inicial+1)+'-'+(columna_inicial+1)).className=='cnone' &&
-            document.getElementById('img-'+(fila_inicial+2)+'-'+(columna_inicial+1)).className=='cnone' &&
-            document.getElementById('img-'+(fila_inicial+3)+'-'+(columna_inicial+1)).className=='cnone'){
-                document.getElementById('img-'+(fila_inicial)+'-'+(columna_inicial)).className='cnone';
-                document.getElementById('img-'+(fila_inicial+1)+'-'+(columna_inicial)).className='cnone';
-                document.getElementById('img-'+(fila_inicial+2)+'-'+(columna_inicial)).className='cnone';
-                document.getElementById('img-'+(fila_inicial+3)+'-'+(columna_inicial)).className='cnone';
-                document.getElementById('img-'+(fila_inicial)+'-'+(columna_inicial+1)).className='cagua';
-                document.getElementById('img-'+(fila_inicial+1)+'-'+(columna_inicial+1)).className='cagua';
-                document.getElementById('img-'+(fila_inicial+2)+'-'+(columna_inicial+1)).className='cagua';
-                document.getElementById('img-'+(fila_inicial+3)+'-'+(columna_inicial+1)).className='cagua';
-                columna_inicial++;
-                if(fila_inicial==12 && columna_inicial==11){
-                    iniciarNuevaFigura();
-                }
-            }
-    }else if(rotacion == 1){
-        if(columna_inicial<8 &&
-            document.getElementById('img-'+(fila_inicial)+'-'+(columna_inicial+4)).className=='cnone'){
-                document.getElementById('img-'+(fila_inicial)+'-'+(columna_inicial)).className='cnone';
-                document.getElementById('img-'+(fila_inicial)+'-'+(columna_inicial+4)).className='cagua';
-                columna_inicial++;
-                if(fila_inicial==15 && columna_inicial==8){
-                    iniciarNuevaFigura();
-                }
-            }
+export function moveRight(figura_actual) {
+    if (figura_actual == 'linea') {
+        linea.moveRight();
+    } else if (figura_actual == 'T') {
+        t.moveRight();
+    } else if (figura_actual == 'Linvertida') {
+        linvertida.moveRight();
+    } else if (figura_actual == 'L') {
+        l.moveRight();
+    } else if (figura_actual == 'S') {
+        s.moveRight();
+    } else if (figura_actual == 'Sinvertida') {
+        sinvertida.moveRight();
+    } else {//figura_actual == 'cuadrado'
+        cuadrado.moveRight();
     }
 }
 
-//MOVIMIENTOS CUADRADO
-function moveDownCuadrado(){
-    if(fila_inicial<14 &&
-        document.getElementById('img-'+(fila_inicial+2)+'-'+columna_inicial).className=='cnone' &&
-        document.getElementById('img-'+(fila_inicial+2)+'-'+(columna_inicial+1)).className=='cnone'){
-            document.getElementById('img-'+(fila_inicial)+'-'+(columna_inicial)).className='cnone';
-            document.getElementById('img-'+(fila_inicial)+'-'+(columna_inicial+1)).className='cnone';
-            document.getElementById('img-'+(fila_inicial+2)+'-'+(columna_inicial)).className='crojo';
-            document.getElementById('img-'+(fila_inicial+2)+'-'+(columna_inicial+1)).className='crojo';
-            fila_inicial++;
-            if(fila_inicial==14){
-                iniciarNuevaFigura();
-            }
-        }
-    else if(document.getElementById('img-'+(fila_inicial+2)+'-'+columna_inicial).className!='cnone' ||
-            document.getElementById('img-'+(fila_inicial+2)+'-'+(columna_inicial+1)).className!='cnone'){                    
-                iniciarNuevaFigura();                    
-        }
-}
 
-function moveLeftCuadrado(){
-    if(columna_inicial>0 &&
-        document.getElementById('img-'+(fila_inicial)+'-'+(columna_inicial-1)).className=='cnone' &&
-        document.getElementById('img-'+(fila_inicial+1)+'-'+(columna_inicial-1)).className=='cnone'){
-            document.getElementById('img-'+(fila_inicial)+'-'+(columna_inicial+1)).className='cnone';
-            document.getElementById('img-'+(fila_inicial+1)+'-'+(columna_inicial+1)).className='cnone';
-            document.getElementById('img-'+(fila_inicial)+'-'+(columna_inicial-1)).className='crojo';
-            document.getElementById('img-'+(fila_inicial+1)+'-'+(columna_inicial-1)).className='crojo';
-            columna_inicial--;
-            if(fila_inicial==14 && columna_inicial==0){
-                iniciarNuevaFigura();
-            }
-        }
-}
+export function moveRotar(figura_actual) {
+    if (figura_actual == 'linea') {
+        linea.rotar();
+    } else if (figura_actual == 'T') {
+        t.rotar();
+    } else if (figura_actual == 'Linvertida') {
+        linvertida.rotar();
+    } else if (figura_actual == 'L') {
+        l.rotar();
+    } else if (figura_actual == 'S') {
+        s.rotar();
+    } else if (figura_actual == 'Sinvertida') {
+        sinvertida.rotar();
+    } else {//figura_actual == 'cuadrado'
 
-function moveRightCuadrado(){
-    console.log('RIGHT');
-    if(columna_inicial<10 &&
-        document.getElementById('img-'+(fila_inicial)+'-'+(columna_inicial+2)).className=='cnone' &&
-        document.getElementById('img-'+(fila_inicial+1)+'-'+(columna_inicial+2)).className=='cnone'){
-            document.getElementById('img-'+(fila_inicial)+'-'+(columna_inicial)).className='cnone';
-            document.getElementById('img-'+(fila_inicial+1)+'-'+(columna_inicial)).className='cnone';
-            document.getElementById('img-'+(fila_inicial)+'-'+(columna_inicial+2)).className='crojo';
-            document.getElementById('img-'+(fila_inicial+1)+'-'+(columna_inicial+2)).className='crojo';
-            columna_inicial++;
-            if(fila_inicial==14 && columna_inicial==10){
-                iniciarNuevaFigura();
-            }
-        }
-}
-
-
-export function moveDown(figura_actual){
-    if(figura_actual == 'linea'){
-        moveDownLinea();
-    }else if(figura_actual == 'T'){
-        if(rotacion == 0){
-
-        }else if(rotacion == 1){
-
-        }else if(rotacion == 2){
-
-        }else{//rotacion 3
-
-        }
-    }else if(figura_actual == 'Linvertida'){
-        if(rotacion == 0){
-
-        }else if(rotacion == 1){
-
-        }else if(rotacion == 2){
-
-        }else{//rotacion 3
-
-        }
-    }else if(figura_actual == 'L'){
-        if(rotacion == 0){
-
-        }else if(rotacion == 1){
-
-        }else if(rotacion == 2){
-
-        }else{//rotacion 3
-
-        }
-    }else if(figura_actual == 'S'){
-        if(rotacion == 0){
-
-        }else if(rotacion == 1){
-
-        }
-    }else if(figura_actual == 'Sinvertida'){
-        if(rotacion == 0){
-
-        }else if(rotacion == 1){
-
-        }
-    }else{//figura_actual == 'cuadrado'
-        moveDownCuadrado();
-    }
-}
-
-export function moveLeft(figura_actual){
-    if(figura_actual == 'linea'){
-        moveLeftLinea();
-    }else if(figura_actual == 'T'){
-        if(rotacion == 0){
-
-        }else if(rotacion == 1){
-
-        }else if(rotacion == 2){
-
-        }else{//rotacion 3
-
-        }
-    }else if(figura_actual == 'Linvertida'){
-        if(rotacion == 0){
-
-        }else if(rotacion == 1){
-
-        }else if(rotacion == 2){
-
-        }else{//rotacion 3
-
-        }
-    }else if(figura_actual == 'L'){
-        if(rotacion == 0){
-
-        }else if(rotacion == 1){
-
-        }else if(rotacion == 2){
-
-        }else{//rotacion 3
-
-        }
-    }else if(figura_actual == 'S'){
-        if(rotacion == 0){
-
-        }else if(rotacion == 1){
-
-        }
-    }else if(figura_actual == 'Sinvertida'){
-        if(rotacion == 0){
-
-        }else if(rotacion == 1){
-
-        }
-    }else{//figura_actual == 'cuadrado'
-        moveLeftCuadrado();
-    }
-}
-
-export function moveRight(figura_actual){
-    if(figura_actual == 'linea'){
-        moveRightLinea();
-    }else if(figura_actual == 'T'){
-        if(rotacion == 0){
-
-        }else if(rotacion == 1){
-
-        }else if(rotacion == 2){
-
-        }else{//rotacion 3
-
-        }
-    }else if(figura_actual == 'Linvertida'){
-        if(rotacion == 0){
-
-        }else if(rotacion == 1){
-
-        }else if(rotacion == 2){
-
-        }else{//rotacion 3
-
-        }
-    }else if(figura_actual == 'L'){
-        if(rotacion == 0){
-
-        }else if(rotacion == 1){
-
-        }else if(rotacion == 2){
-
-        }else{//rotacion 3
-
-        }
-    }else if(figura_actual == 'S'){
-        if(rotacion == 0){
-
-        }else if(rotacion == 1){
-
-        }
-    }else if(figura_actual == 'Sinvertida'){
-        if(rotacion == 0){
-
-        }else if(rotacion == 1){
-
-        }
-    }else{//figura_actual == 'cuadrado'
-        moveRightCuadrado();
-    }
-}
-
-function rotarLinea(){
-    if(rotacion == 0){
-        if(columna_inicial<=8 &&
-            isVacio(fila_inicial,columna_inicial+1) && 
-            isVacio(fila_inicial,columna_inicial+2) && 
-            isVacio(fila_inicial,columna_inicial+3)){
-                document.getElementById('img-'+(fila_inicial+1)+'-'+columna_inicial).className='cnone';
-                document.getElementById('img-'+(fila_inicial+2)+'-'+columna_inicial).className='cnone';
-                document.getElementById('img-'+(fila_inicial+3)+'-'+columna_inicial).className='cnone';
-                document.getElementById('img-'+(fila_inicial)+'-'+(columna_inicial+1)).className='cagua';
-                document.getElementById('img-'+(fila_inicial)+'-'+(columna_inicial+2)).className='cagua';
-                document.getElementById('img-'+(fila_inicial)+'-'+(columna_inicial+3)).className='cagua';
-                rotacion = 1;
-            }
-        else if(columna_inicial==9 &&
-            isVacio(fila_inicial,columna_inicial-1) && 
-            isVacio(fila_inicial,columna_inicial+1) && 
-            isVacio(fila_inicial,columna_inicial+2)){
-                document.getElementById('img-'+(fila_inicial+1)+'-'+columna_inicial).className='cnone';
-                document.getElementById('img-'+(fila_inicial+2)+'-'+columna_inicial).className='cnone';
-                document.getElementById('img-'+(fila_inicial+3)+'-'+columna_inicial).className='cnone';
-                document.getElementById('img-'+(fila_inicial)+'-'+(columna_inicial-1)).className='cagua';
-                document.getElementById('img-'+(fila_inicial)+'-'+(columna_inicial+1)).className='cagua';
-                document.getElementById('img-'+(fila_inicial)+'-'+(columna_inicial+2)).className='cagua';
-                rotacion = 1;
-            }
-        else if(columna_inicial==10 &&
-            isVacio(fila_inicial,columna_inicial-1) && 
-            isVacio(fila_inicial,columna_inicial-2) && 
-            isVacio(fila_inicial,columna_inicial+1)){
-                document.getElementById('img-'+(fila_inicial+1)+'-'+columna_inicial).className='cnone';
-                document.getElementById('img-'+(fila_inicial+2)+'-'+columna_inicial).className='cnone';
-                document.getElementById('img-'+(fila_inicial+3)+'-'+columna_inicial).className='cnone';
-                document.getElementById('img-'+(fila_inicial)+'-'+(columna_inicial-1)).className='cagua';
-                document.getElementById('img-'+(fila_inicial)+'-'+(columna_inicial-2)).className='cagua';
-                document.getElementById('img-'+(fila_inicial)+'-'+(columna_inicial+1)).className='cagua';
-                rotacion = 1;
-            }
-        else if(columna_inicial==11 &&
-            isVacio(fila_inicial,columna_inicial-1) && 
-            isVacio(fila_inicial,columna_inicial-2) && 
-            isVacio(fila_inicial,columna_inicial-3)){
-                document.getElementById('img-'+(fila_inicial+1)+'-'+columna_inicial).className='cnone';
-                document.getElementById('img-'+(fila_inicial+2)+'-'+columna_inicial).className='cnone';
-                document.getElementById('img-'+(fila_inicial+3)+'-'+columna_inicial).className='cnone';
-                document.getElementById('img-'+(fila_inicial)+'-'+(columna_inicial-1)).className='cagua';
-                document.getElementById('img-'+(fila_inicial)+'-'+(columna_inicial-2)).className='cagua';
-                document.getElementById('img-'+(fila_inicial)+'-'+(columna_inicial-3)).className='cagua';
-                rotacion = 1;
-            }
-    }else if(rotacion == 1){
-        if(columna_inicial<=8 &&
-            isVacio(fila_inicial+1,columna_inicial) && 
-            isVacio(fila_inicial+2,columna_inicial) && 
-            isVacio(fila_inicial+3,columna_inicial)){
-                document.getElementById('img-'+(fila_inicial)+'-'+(columna_inicial+1)).className='cnone';
-                document.getElementById('img-'+(fila_inicial)+'-'+(columna_inicial+2)).className='cnone';
-                document.getElementById('img-'+(fila_inicial)+'-'+(columna_inicial+3)).className='cnone';
-                document.getElementById('img-'+(fila_inicial+1)+'-'+(columna_inicial)).className='cagua';
-                document.getElementById('img-'+(fila_inicial+2)+'-'+(columna_inicial)).className='cagua';
-                document.getElementById('img-'+(fila_inicial+3)+'-'+(columna_inicial)).className='cagua';
-                rotacion = 0;
-            }
-        else if(columna_inicial==9 &&
-            isVacio(fila_inicial+1,columna_inicial) && 
-            isVacio(fila_inicial+2,columna_inicial) && 
-            isVacio(fila_inicial+3,columna_inicial)){
-                document.getElementById('img-'+(fila_inicial)+'-'+(columna_inicial-1)).className='cnone';
-                document.getElementById('img-'+(fila_inicial)+'-'+(columna_inicial+1)).className='cnone';
-                document.getElementById('img-'+(fila_inicial)+'-'+(columna_inicial+2)).className='cnone';
-                document.getElementById('img-'+(fila_inicial+1)+'-'+(columna_inicial)).className='cagua';
-                document.getElementById('img-'+(fila_inicial+2)+'-'+(columna_inicial)).className='cagua';
-                document.getElementById('img-'+(fila_inicial+3)+'-'+(columna_inicial)).className='cagua';
-                rotacion = 0;
-            }
-        else if(columna_inicial==10 &&
-            isVacio(fila_inicial+1,columna_inicial) && 
-            isVacio(fila_inicial+2,columna_inicial) && 
-            isVacio(fila_inicial+3,columna_inicial)){
-                document.getElementById('img-'+(fila_inicial)+'-'+(columna_inicial-1)).className='cnone';
-                document.getElementById('img-'+(fila_inicial)+'-'+(columna_inicial-2)).className='cnone';
-                document.getElementById('img-'+(fila_inicial)+'-'+(columna_inicial+1)).className='cnone';
-                document.getElementById('img-'+(fila_inicial+1)+'-'+(columna_inicial)).className='cagua';
-                document.getElementById('img-'+(fila_inicial+2)+'-'+(columna_inicial)).className='cagua';
-                document.getElementById('img-'+(fila_inicial+3)+'-'+(columna_inicial)).className='cagua';
-                rotacion = 0;
-            }
-        else if(columna_inicial==11 &&
-            isVacio(fila_inicial+1,columna_inicial) && 
-            isVacio(fila_inicial+2,columna_inicial) && 
-            isVacio(fila_inicial+3,columna_inicial)){
-                document.getElementById('img-'+(fila_inicial)+'-'+(columna_inicial-1)).className='cnone';
-                document.getElementById('img-'+(fila_inicial)+'-'+(columna_inicial-2)).className='cnone';
-                document.getElementById('img-'+(fila_inicial)+'-'+(columna_inicial-3)).className='cnone';
-                document.getElementById('img-'+(fila_inicial+1)+'-'+(columna_inicial)).className='cagua';
-                document.getElementById('img-'+(fila_inicial+2)+'-'+(columna_inicial)).className='cagua';
-                document.getElementById('img-'+(fila_inicial+3)+'-'+(columna_inicial)).className='cagua';
-                rotacion = 0;
-            }
-    }
-}
-
-export function moveRotar(figura_actual){
-    if(figura_actual == 'linea'){
-        rotarLinea();        
-    }else if(figura_actual == 'T'){
-        if(rotacion == 0){
-
-        }else if(rotacion == 1){
-
-        }else if(rotacion == 2){
-
-        }else{//rotacion 3
-
-        }
-    }else if(figura_actual == 'Linvertida'){
-        if(rotacion == 0){
-
-        }else if(rotacion == 1){
-
-        }else if(rotacion == 2){
-
-        }else{//rotacion 3
-
-        }
-    }else if(figura_actual == 'L'){
-        if(rotacion == 0){
-
-        }else if(rotacion == 1){
-
-        }else if(rotacion == 2){
-
-        }else{//rotacion 3
-
-        }
-    }else if(figura_actual == 'S'){
-        if(rotacion == 0){
-
-        }else if(rotacion == 1){
-
-        }
-    }else if(figura_actual == 'Sinvertida'){
-        if(rotacion == 0){
-
-        }else if(rotacion == 1){
-
-        }
-    }else{//figura_actual == 'cuadrado'
-        
     }
 }
