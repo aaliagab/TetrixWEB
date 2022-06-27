@@ -1,4 +1,5 @@
 import * as move from "./movimientos.js";
+import * as jugador from "./jugador.js";
 export let pausa = false;
 export let timedown = 1000; //tiempo de caida
 
@@ -168,10 +169,7 @@ export function colocarFiguras() {
 }
 
 function ocupado(x1, y1, x2, y2, x3, y3, x4, y4) {
-    console.log(document.getElementById('img-' + x1 + '-' + y1).className);
-    console.log(document.getElementById('img-' + x2 + '-' + y2).className);
-    console.log(document.getElementById('img-' + x3 + '-' + y3).className);
-    console.log(document.getElementById('img-' + x4 + '-' + y4).className);
+    
     return document.getElementById('img-' + x1 + '-' + y1).className != 'cnone' ||
         document.getElementById('img-' + x2 + '-' + y2).className != 'cnone' ||
         document.getElementById('img-' + x3 + '-' + y3).className != 'cnone' ||
@@ -187,15 +185,23 @@ function gameOverMensaje() {
         "<p class='blanco'><b>PERDIÓ CON "+document.getElementById('recordnum').textContent +"</b></p>" +
         "</div>" +
         "<div class='col-auto'>" +
-        "<input type='text' class='form-control' id='inputPassword2' placeholder='nombre'>" +
+        "<input type='text' class='form-control' id='jugador' placeholder='nombre'>" +
         "</div>" +
         "<div class='col-auto'>" +
-        "<button type='submit' class='btn btn-primary mb-3'>Registrar</button>" +
+        "<button type='submit' class='btn btn-primary mb-3' onclick = 'registrarJugador()'>Registrar</button>" +
         "</div>" +
         "</form>";
     //document.getElementById('gameover').innerHTML+="<p>USTED PERDIÓ CON UNA PUNTUACIÓN DE "+document.getElementById('recordnum').textContent+"</p>";
     document.getElementById('gameover').innerHTML = mensaje;
 
+}
+
+function registrarJugador(){
+    let jugador = {
+        nombre: document.getElementById('jugador').textContent,
+        puntos: document.getElementById('recordnum').textContent
+    };
+    alert(jugador);
 }
 
 function esperarTiempo(milisegundo) {
