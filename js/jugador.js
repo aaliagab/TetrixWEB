@@ -1,4 +1,4 @@
-export class jugador{
+export class Jugador{
     constructor(nombre,puntos){
         this.nombre = nombre;
         this.puntos = puntos;

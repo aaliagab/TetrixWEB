@@ -177,14 +177,6 @@ function ocupado(x1, y1, x2, y2, x3, y3, x4, y4) {
         document.getElementById('img-' + x4 + '-' + y4).className != 'cnone';
 }
 
-function registrarJugador() {
-    /*let jugador = {
-        nombre: document.getElementById('jugador').textContent,
-        puntos: document.getElementById('recordnum').textContent
-    };
-    alert(jugador);*/
-}
-
 function gameOverMensaje() {
     /*let mensaje = "<div class='alert alert-danger' role='alert'>" +
         "<p><b>USTED PERDIÓ CON UNA PUNTUACIÓN DE " + document.getElementById('recordnum').textContent +
@@ -197,7 +189,7 @@ function gameOverMensaje() {
         "<input type='text' class='form-control' id='jugador' placeholder='nombre'>" +
         "</div>" +
         "<div class='col-auto'>" +
-        "<button type='button' class='btn btn-primary mb-3' onclick = 'registrarJugador()'>Registrar</button>" +
+        "<input class='btn btn-primary' type='summit' value='Registrar' onclick = 'registrarJugador()'>"+
         "</div>" +
         "</form>";
     //document.getElementById('gameover').innerHTML+="<p>USTED PERDIÓ CON UNA PUNTUACIÓN DE "+document.getElementById('recordnum').textContent+"</p>";
