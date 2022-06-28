@@ -66,7 +66,9 @@ function borrarFilas() {
     fin = fila - 1;
 
     let i = inicio - 1;
-    if (inicio >= 0) {
+    if (inicio >= 0) {        
+        const music = new Audio('../song/rayo.mp3');
+        music.play();
         record += (12 * Math.pow(2, fin - inicio + 1));
         document.getElementById('recordnum').textContent = parseInt(document.getElementById('recordnum').textContent) + parseInt(record);
     }

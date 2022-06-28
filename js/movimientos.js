@@ -5,86 +5,6 @@ let record = 0;
 
 import * as control from "./control.js";
 
-export function caidaConstante() {
-    while (!control.pausa) {
-        let myVar = setTimeout(moveDown(control.figura_actual), control.timedown);
-        clearTimeout(myVar);
-    }
-}
-
-//caidaConstante();
-
-export function iniciarNuevaFigura() {
-    fila_inicial = 0;
-    columna_inicial = 4;
-    rotacion = 0;
-    borrarFilas();
-    control.colocarFiguras();
-}
-
-function isFilaCompleta(fila) {
-    let columna = 0;
-    while (columna < 12) {
-        //console.log(fila+" - "+columna);
-        if (document.getElementById('img-' + (fila) + '-' + columna).className == 'cnone')
-            return false;
-        columna++;
-    }
-    return true;
-}
-
-function copiarFila(origen, destino) {
-    for (let i = 0; i < 12; i++) {
-        if (origen < 16 && destino < 16)
-            document.getElementById('img-' + (destino) + '-' + i).className =
-                document.getElementById('img-' + (origen) + '-' + i).className;
-    }
-}
-
-function limpiarFila(fila) {
-    for (let i = 0; i < 12; i++) {
-        document.getElementById('img-' + (fila) + '-' + i).className = 'cnone';
-    }
-}
-
-function borrarFilas() {
-    let inicio = -1;
-    let fin = -1;
-    let fila = 0;
-    while (fila < 16 && !isFilaCompleta(fila)) {
-        fila++;
-    }
-    if (fila > 0 && fila < 16) {
-        inicio = fila;
-        fin = fila;
-    }
-    fila++;
-    while (fila < 16 && isFilaCompleta(fila)) {
-        fila++;
-    }
-    fin = fila - 1;
-
-    let i = inicio - 1;
-    if (inicio >= 0) {
-        record += (12 * Math.pow(2, fin - inicio + 1));
-        document.getElementById('recordnum').textContent = parseInt(record);
-    }
-    while (fin >= 0 && inicio >= 0) {
-        if (i < 0) {
-            limpiarFila(fin--);
-            i--;
-        }
-        else {
-            copiarFila(i--, fin--);
-        }
-    }
-
-}
-
-function isVacio(fila, columna) {
-    return document.getElementById('img-' + fila + '-' + columna).className == 'cnone';
-}
-
 import * as cuadrado from "./movimientos_cuadrado.js";
 import * as linea from "./movimientos_linea.js";
 import * as s from "./movimientos_s.js";
@@ -97,8 +17,10 @@ import * as linvertida from "./movimientos_linvertida.js";
 
 
 export function moveDown(figura_actual) {
+    
     if (figura_actual == 'linea') {
         linea.moveDown();
+        //$('body').css('background-image', 'url(../images/fondo.jpg)');
     } else if (figura_actual == 'T') {
         t.moveDown();
     } else if (figura_actual == 'Linvertida') {

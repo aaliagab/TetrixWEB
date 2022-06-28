@@ -48,10 +48,20 @@ function limpiarFila(fila) {
     }
 }
 
+function esperarTiempo(milisegundo) {
+
+    let inicio = new Date().getTime();
+    let end = new Date().getTime();
+    while ((end - inicio) < milisegundo) {
+        end = new Date().getTime();
+    }
+}
+
 function borrarFilas() {
     let inicio = -1;
     let fin = -1;
     let fila = 0;
+
     while (fila < 16 && !isFilaCompleta(fila)) {
         fila++;
     }
@@ -67,9 +77,13 @@ function borrarFilas() {
 
     let i = inicio - 1;
     if (inicio >= 0) {
+        const music = new Audio('../song/rayo.mp3');
+        music.play();
+        //$('body').css('background-image', 'url(../images/rayo.gif)');
         record += (12 * Math.pow(2, fin - inicio + 1));
         document.getElementById('recordnum').textContent = parseInt(document.getElementById('recordnum').textContent) + parseInt(record);
     }
+    
     while (fin >= 0 && inicio >= 0) {
         if (i < 0) {
             limpiarFila(fin--);

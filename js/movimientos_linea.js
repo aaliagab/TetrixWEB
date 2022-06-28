@@ -43,8 +43,17 @@ function copiarFila(origen, destino) {
 }
 
 function limpiarFila(fila) {
-    for (let i = 0; i < 12; i++) {
+    for (let i = 0; i < 12; i++) {        
         document.getElementById('img-' + (fila) + '-' + i).className = 'cnone';
+    }
+}
+
+function esperarTiempo(milisegundo) {
+
+    let inicio = new Date().getTime();
+    let end = new Date().getTime();
+    while ((end - inicio) < milisegundo) {
+        end = new Date().getTime();
     }
 }
 
@@ -66,12 +75,18 @@ function borrarFilas() {
     fin = fila - 1;
 
     let i = inicio - 1;
-    if (inicio >= 0) {
+    if (inicio >= 0) {        
+        const music = new Audio('../song/rayo.mp3');
+        music.play();       
+        //$('body').css('background-image', 'url(../images/rayo.gif)');
         record += (12 * Math.pow(2, fin - inicio + 1));
         document.getElementById('recordnum').textContent = parseInt(document.getElementById('recordnum').textContent) + parseInt(record);
     }
+
+    
+
     while (fin >= 0 && inicio >= 0) {
-        if (i < 0) {
+        if (i < 0) {                      
             limpiarFila(fin--);
             i--;
         }

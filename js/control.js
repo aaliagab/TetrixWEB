@@ -65,6 +65,7 @@ crearFiguras();
 let position = 0;
 
 function colocarFiguraProxima() {
+    
     if (figs[position + 1][1][0].className == 'cagua') {
         document.getElementById('imgProx').src = '../images/pequenas40px/linea.png';
     } else if (figs[position + 1][1][0].className == 'camarillo') {
@@ -169,11 +170,19 @@ export function colocarFiguras() {
 }
 
 function ocupado(x1, y1, x2, y2, x3, y3, x4, y4) {
-    
+
     return document.getElementById('img-' + x1 + '-' + y1).className != 'cnone' ||
         document.getElementById('img-' + x2 + '-' + y2).className != 'cnone' ||
         document.getElementById('img-' + x3 + '-' + y3).className != 'cnone' ||
         document.getElementById('img-' + x4 + '-' + y4).className != 'cnone';
+}
+
+function registrarJugador() {
+    /*let jugador = {
+        nombre: document.getElementById('jugador').textContent,
+        puntos: document.getElementById('recordnum').textContent
+    };
+    alert(jugador);*/
 }
 
 function gameOverMensaje() {
@@ -182,33 +191,28 @@ function gameOverMensaje() {
         "</b></p></div>";*/
     let mensaje = "<form class='row g-3'>" +
         "<div class='col-auto'>" +
-        "<p class='blanco'><b>PERDIÓ CON "+document.getElementById('recordnum').textContent +"</b></p>" +
+        "<p class='blanco'><b>PERDIÓ CON " + document.getElementById('recordnum').textContent + "</b></p>" +
         "</div>" +
         "<div class='col-auto'>" +
         "<input type='text' class='form-control' id='jugador' placeholder='nombre'>" +
         "</div>" +
         "<div class='col-auto'>" +
-        "<button type='submit' class='btn btn-primary mb-3' onclick = 'registrarJugador()'>Registrar</button>" +
+        "<button type='button' class='btn btn-primary mb-3' onclick = 'registrarJugador()'>Registrar</button>" +
         "</div>" +
         "</form>";
     //document.getElementById('gameover').innerHTML+="<p>USTED PERDIÓ CON UNA PUNTUACIÓN DE "+document.getElementById('recordnum').textContent+"</p>";
     document.getElementById('gameover').innerHTML = mensaje;
+    const music = new Audio('../song/gameover.wav');
+    music.play();
 
 }
 
-function registrarJugador(){
-    let jugador = {
-        nombre: document.getElementById('jugador').textContent,
-        puntos: document.getElementById('recordnum').textContent
-    };
-    alert(jugador);
-}
 
-function esperarTiempo(milisegundo) {
+
+export function esperarTiempo(milisegundo) {
 
     let inicio = new Date().getTime();
     let end = new Date().getTime();
-    console.log(end);
     while ((end - inicio) < milisegundo) {
         end = new Date().getTime();
     }
@@ -218,7 +222,7 @@ function esperarTiempo(milisegundo) {
 
 document.onkeydown = function (e) {
     if (e.key == 'ArrowDown' && !pausa) {
-        move.moveDown(figura_actual);
+        move.moveDown(figura_actual);                   
     } else if (e.key == 'ArrowRight' && !pausa) {
         move.moveRight(figura_actual);
     } else if (e.key == 'ArrowLeft' && !pausa) {

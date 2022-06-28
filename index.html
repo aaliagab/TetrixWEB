@@ -1,137 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>TETRIX WEB ADRIEL</title>
-        <link rel="stylesheet" href="css/plantilla.css">
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-        <!--link rel="import" href="menu.html"-->        
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TETRIX WEB ADRIEL</title>
+  <link rel="stylesheet" href="css/plantilla.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <!--link rel="import" href="menu.html"-->
+
+</head>
+
+<body>
+
+  <div id="cabeza">
+
+  </div>
+  <div id="principal" class="container">
+
+    <div class="row">
+      <div id="figura_prox" class="col">
+        <div id="gameover"><br /><br /></div>
+        <p class="blanco center"><b>PRÓXIMA FIGURA</b></p>
+        <p class="center"><img id='imgProx' src="images/pequenas40px/cuadrado.png" alt=""></p>
+
+        <p class="blanco">Left, Right y Down para mover figuras, Up para girar, P para pausa.</p>
+        <p class="blanco"><b>TOP 5</b></p>
+        <br />
+        <p class="blanco center"><b>SELECCIONA TU FONDO MUSICAL</b></p>
+        <audio controls loop>
+          <source src="song/1.mp3" type="audio/mp3">
+          Tu navegador no soporta audio HTML5.
+        </audio>
+        <br />
+        <br />
+        <audio controls loop>
+          <source src="song/2.mp3" type="audio/mp3">
+          Tu navegador no soporta audio HTML5.
+        </audio>
         
-    </head>
-    
-    <body>
-        <div id="cabeza">
-            
-        </div>
-        <div id="principal" class="container">
-            
-            <div class="row">
-                <div id="figura_prox" class="col">
-                    <div id="gameover"><br/><br/></div>
-                    <p class="blanco center"><b>PRÓXIMA FIGURA</b></p>
-                    <p class="center"><img id='imgProx' src="images/pequenas40px/cuadrado.png" alt=""></p>
-                                       
-                    <p class="blanco">Left, Right y Down para mover figuras, Up para girar, P para pausa.</p>
-                    <p class="blanco"><b>TOP 5</b></p>
-                    <table class="table">
-                        <thead>
-                          <tr class="blanco">
-                            <th scope="col">#</th>
-                            <th scope="col">Nick</th>
-                            <th scope="col">Puntos</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr class="blanco">
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>1800</td>
-                          </tr>
-                          <tr class="blanco">
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>1665</td>
-                          </tr>
-                          <tr class="blanco">
-                            <th scope="row">3</th>
-                            <td>Jacob</td>
-                            <td>1665</td>
-                          </tr>
-                          <tr class="blanco">
-                            <th scope="row">4</th>
-                            <td>Jacob</td>
-                            <td>1665</td>
-                          </tr>
-                          <tr class="blanco">
-                            <th scope="row">5</th>
-                            <td>Jacob</td>
-                            <td>1665</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                      <!--div class="center">
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination">
-                              <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Previous">
-                                  <span aria-hidden="true">&laquo;</span>
-                                </a>
-                              </li>
-                              <li class="page-item"><a class="page-link" href="#">1</a></li>
-                              <li class="page-item"><a class="page-link" href="#">2</a></li>
-                              <li class="page-item"><a class="page-link" href="#">3</a></li>
-                              <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Next">
-                                  <span aria-hidden="true">&raquo;</span>
-                                </a>
-                              </li>
-                            </ul>
-                          </nav>
-                      </div-->
-                </div>                
-                <div id="marco" class="border">
-                    
-                    <table id="table">
-                        <tbody id="bodytable">                            
-                          </tbody>
-                    </table>
-                </div>                
-                <div id="score" class="col">
-                    <p class="blanco center"><b><h1 id="recordtext">RECORD</h1></b></p>
-                    <p class="blanco center"><b><h1 id="recordnum">0</h1></b></p>
-                    <br/>
-                    <br/>
-                    <p class="blanco center"><b>SELECCIONA TU FONDO MUSICAL</b></p>
-                    <audio controls loop>
-                        <source src="song/1.mp3" type="audio/mp3">
-                            Tu navegador no soporta audio HTML5.
-                    </audio>
-                    <br/>
-                    <br/>
-                    <audio controls autoplay loop>
-                        <source src="song/2.mp3" type="audio/mp3">
-                            Tu navegador no soporta audio HTML5.
-                    </audio>
-                    <br/>
-                    <br/>
-                    <audio controls loop>
-                        <source src="song/3.mp3" type="audio/mp3">
-                            Tu navegador no soporta audio HTML5.
-                    </audio>
-                    <br/>
-                    <br/>
-                    <audio controls loop>
-                        <source src="song/4.mp3" type="audio/mp3">
-                            Tu navegador no soporta audio HTML5.
-                    </audio>
-                </div>
-            </div>
-        </div>
-        <div id="footer">
-            <p>@ALL RIGHT RESERVE TO ADRIEL ALIAGA BENAVIDES</p>
-        </div>     
-        <script type="module" src="js/figuras.js"></script>
-        <script type="module" src="js/jugador.js"></script>        
-        <script type="module" src="js/control.js"></script>   
-        <script type="module" src="js/movimientos.js"></script>
-        <script type="module" src="js/movimientos_cuadrado.js"></script>
-        <script type="module" src="js/movimientos_linea.js"></script>
-        <script type="module" src="js/movimientos_s.js"></script>
-        <script type="module" src="js/movimientos_sinvertida.js"></script>
-        <script type="module" src="js/movimientos_t.js"></script>
-        <script type="module" src="js/movimientos_l.js"></script>
-        <script type="module" src="js/movimientos_linvertida.js"></script>
-    </body>
+      </div>
+      <div id="marco" class="border">
+
+        <table id="table">
+          <tbody id="bodytable">
+          </tbody>
+        </table>
+      </div>
+      <div id="score" class="col">
+        <p class="blanco center"><b>
+            <h1 id="recordtext">RECORD</h1>
+          </b></p>
+        <p class="blanco center"><b>
+            <h1 id="recordnum">0</h1>
+          </b></p>
+          <table class="table">
+            <thead>
+              <tr class="blanco">
+                <th scope="col">#</th>
+                <th scope="col">Nick</th>
+                <th scope="col">Puntos</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="blanco">
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>1800</td>
+              </tr>
+              <tr class="blanco">
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>1665</td>
+              </tr>
+              <tr class="blanco">
+                <th scope="row">3</th>
+                <td>Jacob</td>
+                <td>1665</td>
+              </tr>
+              <tr class="blanco">
+                <th scope="row">4</th>
+                <td>Jacob</td>
+                <td>1665</td>
+              </tr>
+              <tr class="blanco">
+                <th scope="row">5</th>
+                <td>Jacob</td>
+                <td>1665</td>
+              </tr>
+              <tr class="blanco">
+                <th scope="row">6</th>
+                <td>Jacob</td>
+                <td>1665</td>
+              </tr>
+              <tr class="blanco">
+                <th scope="row">7</th>
+                <td>Jacob</td>
+                <td>1665</td>
+              </tr>
+              <tr class="blanco">
+                <th scope="row">8</th>
+                <td>Jacob</td>
+                <td>1665</td>
+              </tr>
+              <tr class="blanco">
+                <th scope="row">9</th>
+                <td>Jacob</td>
+                <td>1665</td>
+              </tr>
+              <tr class="blanco">
+                <th scope="row">10</th>
+                <td>Jacob</td>
+                <td>1665</td>
+              </tr>
+            </tbody>
+          </table>
+          <!--div class="center">
+                          <nav aria-label="Page navigation example">
+                              <ul class="pagination">
+                                <li class="page-item">
+                                  <a class="page-link" href="#" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                  </a>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                  <a class="page-link" href="#" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                  </a>
+                                </li>
+                              </ul>
+                            </nav>
+                        </div-->
+        
+        
+      </div>
+    </div>
+  </div>
+  <div id="footer">
+    <p>@ALL RIGHT RESERVE TO ADRIEL ALIAGA BENAVIDES</p>
+  </div>
+  
+  <script type="module" src="js/figuras.js"></script>
+  <script type="module" src="js/jugador.js"></script>
+  <script type="module" src="js/control.js"></script>
+  <script type="module" src="js/movimientos.js"></script>
+  <script type="module" src="js/movimientos_cuadrado.js"></script>
+  <script type="module" src="js/movimientos_linea.js"></script>
+  <script type="module" src="js/movimientos_s.js"></script>
+  <script type="module" src="js/movimientos_sinvertida.js"></script>
+  <script type="module" src="js/movimientos_t.js"></script>
+  <script type="module" src="js/movimientos_l.js"></script>
+  <script type="module" src="js/movimientos_linvertida.js"></script>  
+</body>
+
 </html>
