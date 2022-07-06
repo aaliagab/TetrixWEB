@@ -106,74 +106,61 @@
 
     function leerJugadores() {
       let body = document.getElementById("body_score");
-      /*fetch('http://localhost:8080/api/jugadores/sort')
-        .then((response) => response.json())
-        .then((jugadores) => {
-          let pos = 1;
-          const tpl = jugadores.map((jugador) =>
-            "<tr class='blanco'><th scope='row'>" + pos++ +
-            "</th><td>" + jugador.nombre + "</td><td>" + jugador.record + "</td></tr>");
-          body.innerHTML = tpl;
-        });*/
-        fetch('http://localhost:8080/api/jugadores/sort')
-        .then((response) => response.json())
-        .then((jugadores) => {
-          let pos = 1;
-          jugadores.forEach(jugador => {
-            let tr = document.createElement('tr');
-            tr.className = "blanco";
-
-            let th = document.createElement('th');
-            th.scope = "row";
-            th.textContent = pos++;
-            tr.appendChild(th);
-
-            let tdnombre = document.createElement('td');
-            tdnombre.textContent = jugador.nombre;
-            tr.appendChild(tdnombre);
-
-            let tdrecord = document.createElement('td');
-            tdrecord.textContent = jugador.record;
-            tr.appendChild(tdrecord);
-            
-            body.appendChild(tr);
-          });
-          
-        });
-    }
-
-    leerJugadores();
-
-    function registrarJugador() {
-      var jugador = {
-        nombre: document.getElementById('jugador').value,
-        puntos: document.getElementById('recordnum').textContent
-      };
-      var xmlhttp = new XMLHttpRequest(),
-        jsonArr,
-        method = "GET",
-        jsonRequestURL = "records.json";
-
-      xmlhttp.open(method, jsonRequestURL, true);
-      xmlhttp.onreadystatechange = function () {
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-          // we convert your JSON into JavaScript object
-          jsonArr = JSON.parse(xmlhttp.responseText);
-
-          // we add new value:
-          jsonArr.push(jugador);
-
-          // we send with new request the updated JSON file to the server:
-          xmlhttp.open("POST", jsonRequestURL, true);
-          xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-          // if you want to handle the POST response write (in this case you do not need it):
-          // xmlhttp.onreadystatechange = function(){ /* handle POST response */ };
-          xmlhttp.send("jsonTxt=" + JSON.stringify(jsonArr));
-          // but on this place you have to have a server for write updated JSON to the file
+      if (body.hasChildNodes()) {
+        while (body.childNodes.length >= 1) {
+          body.removeChild(body.firstChild);
         }
-      };
-      xmlhttp.send(null);
-    }
+      }
+
+        fetch(API_URL + '/jugadores/sort')
+          .then((response) => response.json())
+          .then((jugadores) => {
+            let pos = 1;
+            jugadores.forEach(jugador => {
+              let tr = document.createElement('tr');
+              tr.className = "blanco";
+
+              let th = document.createElement('th');
+              th.scope = "row";
+              th.textContent = pos++;
+              tr.appendChild(th);
+
+              let tdnombre = document.createElement('td');
+              tdnombre.textContent = jugador.nombre;
+              tr.appendChild(tdnombre);
+
+              let tdrecord = document.createElement('td');
+              tdrecord.textContent = jugador.record;
+              tr.appendChild(tdrecord);
+
+              body.appendChild(tr);
+            });
+
+          });
+      }
+
+      leerJugadores();
+
+      function registrarJugador() {
+        let jugador = {
+          nombre: document.getElementById('jugador').value,
+          record: document.getElementById('recordnum').textContent
+        };
+        
+        console.log(jugador);
+
+        fetch(API_URL + '/jugadores', {
+          method: "POST",
+          body: JSON.stringify(jugador),
+          headers: {
+            "Content-type": "application/json"
+          }
+        }
+        )
+          .then((response) => response.json())
+          .then((data) => console.log(data));
+        leerJugadores();
+      }
   </script>
   <script type="module" src="js/figuras.js"></script>
   <script type="module" src="js/jugador.js"></script>
