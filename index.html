@@ -64,57 +64,13 @@
               <th scope="col">Puntos</th>
             </tr>
           </thead>
-          <tbody>
-            <tr class="blanco">
+          <tbody id="body_score">
+            <!--tr class="blanco">
               <th scope="row">1</th>
               <td>Mark</td>
               <td>1800</td>
-            </tr>
-            <tr class="blanco">
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>1665</td>
-            </tr>
-            <tr class="blanco">
-              <th scope="row">3</th>
-              <td>Jacob</td>
-              <td>1665</td>
-            </tr>
-            <tr class="blanco">
-              <th scope="row">4</th>
-              <td>Jacob</td>
-              <td>1665</td>
-            </tr>
-            <tr class="blanco">
-              <th scope="row">5</th>
-              <td>Jacob</td>
-              <td>1665</td>
-            </tr>
-            <tr class="blanco">
-              <th scope="row">6</th>
-              <td>Jacob</td>
-              <td>1665</td>
-            </tr>
-            <tr class="blanco">
-              <th scope="row">7</th>
-              <td>Jacob</td>
-              <td>1665</td>
-            </tr>
-            <tr class="blanco">
-              <th scope="row">8</th>
-              <td>Jacob</td>
-              <td>1665</td>
-            </tr>
-            <tr class="blanco">
-              <th scope="row">9</th>
-              <td>Jacob</td>
-              <td>1665</td>
-            </tr>
-            <tr class="blanco">
-              <th scope="row">10</th>
-              <td>Jacob</td>
-              <td>1665</td>
-            </tr>
+            </tr-->
+
           </tbody>
         </table>
         <!--div class="center">
@@ -145,22 +101,48 @@
     <p>@ALL RIGHT RESERVE TO ADRIEL ALIAGA BENAVIDES</p>
   </div>
   <script type="text/javascript">
-    function leerJugador() {
-      /*let jugador = {
-        nombre: document.getElementById('jugador').value,
-        puntos: document.getElementById('recordnum').textContent
-      };*/
-      var xmlhttp;
-      xmlhttp = new XMLHttpRequest();
-      xmlhttp.onreadystatechange = function () {
-        var jsonResponse = xmlhttp.responseText;
-        var objeto_json = JSON.parse(jsonResponse);
-        //alert(objeto_json.puntos);
-        console.log(objeto_json.puntos);
-      }
-      xmlhttp.open("GET", "records.json?nocache=' + (new Date()).getTime()");
-      xmlhttp.send();
+    const API_URL = "http://localhost:8080/api";
+
+
+    function leerJugadores() {
+      let body = document.getElementById("body_score");
+      /*fetch('http://localhost:8080/api/jugadores/sort')
+        .then((response) => response.json())
+        .then((jugadores) => {
+          let pos = 1;
+          const tpl = jugadores.map((jugador) =>
+            "<tr class='blanco'><th scope='row'>" + pos++ +
+            "</th><td>" + jugador.nombre + "</td><td>" + jugador.record + "</td></tr>");
+          body.innerHTML = tpl;
+        });*/
+        fetch('http://localhost:8080/api/jugadores/sort')
+        .then((response) => response.json())
+        .then((jugadores) => {
+          let pos = 1;
+          jugadores.forEach(jugador => {
+            let tr = document.createElement('tr');
+            tr.className = "blanco";
+
+            let th = document.createElement('th');
+            th.scope = "row";
+            th.textContent = pos++;
+            tr.appendChild(th);
+
+            let tdnombre = document.createElement('td');
+            tdnombre.textContent = jugador.nombre;
+            tr.appendChild(tdnombre);
+
+            let tdrecord = document.createElement('td');
+            tdrecord.textContent = jugador.record;
+            tr.appendChild(tdrecord);
+            
+            body.appendChild(tr);
+          });
+          
+        });
     }
+
+    leerJugadores();
 
     function registrarJugador() {
       var jugador = {

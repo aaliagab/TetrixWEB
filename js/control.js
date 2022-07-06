@@ -189,7 +189,7 @@ function gameOverMensaje() {
         "<input type='text' class='form-control' id='jugador' placeholder='nombre'>" +
         "</div>" +
         "<div class='col-auto'>" +
-        "<input class='btn btn-primary' type='summit' value='Registrar' onclick = 'registrarJugador()'>"+
+        "<input class='btn btn-primary' value='Registrar' onclick = 'registrarJugador()'>"+
         "</div>" +
         "</form>";
     //document.getElementById('gameover').innerHTML+="<p>USTED PERDIÓ CON UNA PUNTUACIÓN DE "+document.getElementById('recordnum').textContent+"</p>";
