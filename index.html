@@ -117,6 +117,7 @@
           .then((jugadores) => {
             let pos = 1;
             jugadores.forEach(jugador => {
+              if(pos<=10){
               let tr = document.createElement('tr');
               tr.className = "blanco";
 
@@ -134,6 +135,7 @@
               tr.appendChild(tdrecord);
 
               body.appendChild(tr);
+            }
             });
 
           });
