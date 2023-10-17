@@ -1,0 +1,6 @@
+tem que ficar na pasta pela console
+pelo porto 8000:
+python -m http.server
+
+pelo outro porto #xxxx
+python -m http.server xxxx
