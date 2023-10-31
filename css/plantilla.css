@@ -17,6 +17,10 @@ body {
     color: aqua;
 }
 
+.contributors ol li{
+    color: blue;
+    align-items: center;
+}
 #footer{
     color:aqua;
     text-align: center;
